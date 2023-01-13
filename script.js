@@ -188,11 +188,14 @@ input.addEventListener("change", function() {
     label.style.color = `crimson`;
     const songName = input.files[0].name;
 
+    const ranImgs = ["one", "two", "three"];
+    const generatedNum = genRandomNum(ranImgs.length);
+    console.log(generatedNum)
     songTitle.textContent = `${songName}`;
     authorName.textContent = ``;
-    songCover.src = `/ranImg/one.jpg`;
-    songCoverRoller.src = `/ranImg/one.jpg`;
-    body.style.backgroundImage = `url(/ranImg/one.jpg)`;
+    songCover.src = `/ranImg/${ranImgs[generatedNum]}.jpg`;
+    songCoverRoller.src = `/ranImg/${ranImgs[generatedNum]}.jpg`;
+    body.style.backgroundImage = `url(/ranImg/${ranImgs[generatedNum]}.jpg)`;
     body.style.backgroundSize = `fill`;
     body.style.backgroundPosition = `center center`;
     body.style.backgroundRepeat = `no-repeat`;
@@ -203,7 +206,7 @@ input.addEventListener("change", function() {
         document.getElementById("audio").src = event.target.result;
 
         if(document.getElementById("audio").src != "" || document.getElementById("audio").src != undefined || document.getElementById("audio").src != null){
-            playSong();
+           document.getElementById("audio").addEventListener("loadeddata", playSong);
         };
 
 
@@ -211,3 +214,9 @@ input.addEventListener("change", function() {
         document.getElementById("audio").addEventListener("timeupdate", timeupdate)
     };
 })
+
+function genRandomNum(num){
+    return Math.floor(Math.random() * (num));
+}
+
+console.log(genRandomNum(3))
