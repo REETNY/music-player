@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="AJIDE SHAMSIDEEN">
+    <meta name="description" content="A small music player">
+    <link rel="stylesheet" href="/styles.css" type="text/css">
+    <!-- fa icon script link  -->
+    <script src="https://use.fontawesome.com/7e50d7d663.js"></script>
+    <!-- end of fa icon script link  -->
+
+    <!--google font link-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!--end of google font link-->
+</head>
+<body>
+    
+    <main>
+
+        <div class="app-cont">
+
+            <div class="app-body">
+                <div class="music-player-cont">
+
+                    <img src="/imgs/music-img.jpg" alt="" id="img_cover">
+
+                    <div class="music-details">
+                        <span class="song_title">Cucurella</span>
+                        <div class="author"></div>
+
+                        <span class="roller-cont">
+                            <img src="/imgs/music-img.jpg" alt="" id="img_roller">
+                            <span class="colorchanger"></span>
+                        </span>
+                    </div>
+
+                    <audio src="" id="audio"></audio>
+
+                    <div class="progress_bar">
+                        <div class="progress"></div>
+                    </div>
+
+                    <div class="music-player-controller">
+                        <button class="prev" id="prev"><i class="fa fa-backward" aria-hidden="true"></i></button>
+                        <button class="playBtn" id="play"><i class="fa fa-play" aria-hidden="true"></i></button>
+                        <button class="next" id="next"><i class="fa fa-forward" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <span class="loader">
+        <label for="openFile" class="label">
+            <i class="fa fa-file" aria-hidden="true"></i>
+            <input type="file" name="openner" id="openFile">
+        </label>
+    </span>
+
+    <script src="/script.js" type="text/javascript"></script>
+</body>
+</html>
