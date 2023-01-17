@@ -185,11 +185,11 @@ progressBar.addEventListener("click", setTime);
 var input = document.querySelector("#openFile");
 var label = document.querySelector(".label");
 input.addEventListener("change", function() {
+    const ranImgs = ["one", "two", "three"];
+    const generatedNum = genRandomNum(ranImgs.length);
     label.style.color = `crimson`;
     const songName = input.files[0].name;
 
-    const ranImgs = ["one", "two", "three"];
-    const generatedNum = genRandomNum(ranImgs.length);
     console.log(generatedNum)
     songTitle.textContent = `${songName}`;
     authorName.textContent = ``;
