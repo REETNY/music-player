@@ -87,7 +87,6 @@ let songIndex = 0;
 loadSong(songData[songIndex]);
 
 //functions
-
 function loadSong(song, loaded) {
     songCover.src = `/backImgs/${song.back_cover}.jpg`;
     songCoverRoller.src = `/backImgs/${song.back_cover}.jpg`;
@@ -102,7 +101,6 @@ function loadSong(song, loaded) {
 
 function prevSong(){
     songIndex--;
-
     if(songIndex < 0){
         songIndex = songData.length - 1;
     }
@@ -114,7 +112,6 @@ function prevSong(){
 
 function nextSong(){
     songIndex++;
-
     if(songIndex > songData.length - 1){
         songIndex = 0;
     }
@@ -226,7 +223,6 @@ function checkPlay(e){
 }
 
 function addRoller(bool){
-    console.log(bool)
     if(bool){
         rollerCont.classList.add("roll")
     }else{
