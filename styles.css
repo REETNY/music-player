@@ -165,7 +165,7 @@ main{
     font-size: 22px;
 }
 
-.music-player-cont.play .roller-cont{
+.roller-cont.roll{
     animation: rotate 2s linear infinite;
 }
 

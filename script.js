@@ -140,14 +140,10 @@ function pauseSong(){
     audioTag.pause()
 }
 
-let oldTime;
-
 function timeupdate(e){
-    
     const {currentTime, duration} = e.srcElement;
     const currentPercent = (currentTime / duration)  * 100;
     progress.style.width = `${currentPercent}%`
-    oldTime = currentTime;
 }
 
 function setTime(e){
@@ -218,14 +214,9 @@ function changeIcon(e){
     }
 }
 
-
-
-// function timeChecker(e){
-//     // if(e.returnValue){
-//         // musicPlayerCont.classList.remove("play");
-//         console.log(e)
-//     // }
-// }
+function checkPlay(e){
+    console.log(e)
+}
 
 
 //event listeners
@@ -242,12 +233,11 @@ playBtn.addEventListener("click", () => {
 
 });
 
-
 audioTag.addEventListener("timeupdate", timeupdate);
 audioTag.addEventListener("ended", nextSong);
-// audioTag.addEventListener("progress", timeChecker)
+audioTag.addEventListener("waiting", checkPlay)
 progressBar.addEventListener("click", setTime);
-sliderVolBtn.addEventListener("mousemove", (e) => {
+sliderVolBtn.addEventListener("change", (e) => {
     setVolume(e)
 })
 volumeCond.addEventListener("click", (e) => {
