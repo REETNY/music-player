@@ -1,6 +1,7 @@
 const musicPlayerCont = document.querySelector(".music-player-cont");
 const songCover = document.querySelector("#img_cover");
 const songCoverRoller = document.querySelector("#img_roller");
+const rollerCont = document.querySelector(".roller-cont");
 const songTitle = document.querySelector(".song_title");
 const authorName = document.querySelector(".author");
 const colorchanger = document.querySelector(".colorchanger");
@@ -141,6 +142,7 @@ function pauseSong(){
 }
 
 function timeupdate(e){
+    rollerCont.classList.add("roll")
     const {currentTime, duration} = e.srcElement;
     const currentPercent = (currentTime / duration)  * 100;
     progress.style.width = `${currentPercent}%`
@@ -215,7 +217,7 @@ function changeIcon(e){
 }
 
 function checkPlay(e){
-    console.log(e)
+    rollerCont.classList.remove("roll")
 }
 
 
