@@ -10,6 +10,8 @@ const progress = document.querySelector(".progress");
 const prevBtn = document.querySelector("#prev");
 const playBtn = document.querySelector("#play");
 const nextBtn = document.querySelector("#next");
+const sliderVolBtn = document.querySelector("#sliderVol");
+const volumeCond = document.querySelector(".volumeCondt");
 const body = document.body;
 
 // song array
@@ -138,10 +140,14 @@ function pauseSong(){
     audioTag.pause()
 }
 
+let oldTime;
+
 function timeupdate(e){
+    
     const {currentTime, duration} = e.srcElement;
     const currentPercent = (currentTime / duration)  * 100;
     progress.style.width = `${currentPercent}%`
+    oldTime = currentTime;
 }
 
 function setTime(e){
@@ -158,8 +164,68 @@ function draggableProgress(e) {
     audioTag.currentTime = (offset / width) * duration;
 }
 
+function setVolume(e, audioTag){
+    
+    let muteBtn = `
+        <i class="fa fa-volume-off" aria-hidden="true"></i>
+    `
+
+    let lowBtn = `
+        <i class="fa fa-volume-down" aria-hidden="true"></i>
+    `
+
+    let highBtn = `
+        <i class="fa fa-volume-up" aria-hidden="true"></i>
+    `
+
+    const auidoEl = document.querySelector("#audio");
+    let {value: volume} = e.target;
+    let volumePer = (parseFloat(volume) / 100);
+    auidoEl.volume = volumePer;
+
+    if(volume == 0){
+        volumeCond.innerHTML = muteBtn;
+    }else if(volume > 0 && volume <= 35){
+        volumeCond.innerHTML = lowBtn;
+    }else{
+        volumeCond.innerHTML = highBtn;
+    }
+}
+
+function changeIcon(e){
+    let muteBtn = `
+        <i class="fa fa-volume-off" aria-hidden="true"></i>
+    `
+
+    let lowBtn = `
+        <i class="fa fa-volume-down" aria-hidden="true"></i>
+    `
+
+    let highBtn = `
+        <i class="fa fa-volume-up" aria-hidden="true"></i>
+    `
+
+    let {className} = e.target 
+    
+    if(className === "fa fa-volume-up" || className === "fa fa-volume-down"){
+        volumeCond.innerHTML = muteBtn;
+        audioTag.volume = 0;
+        sliderVolBtn.value = 0;
+    }else{
+        volumeCond.innerHTML = highBtn;
+        audioTag.volume = 1;
+        sliderVolBtn.value = 100;
+    }
+}
 
 
+
+// function timeChecker(e){
+//     // if(e.returnValue){
+//         // musicPlayerCont.classList.remove("play");
+//         console.log(e)
+//     // }
+// }
 
 
 //event listeners
@@ -175,10 +241,23 @@ playBtn.addEventListener("click", () => {
     }
 
 });
-audioTag.addEventListener("timeupdate", timeupdate);
-audioTag.addEventListener("ended", nextSong)
-progressBar.addEventListener("click", setTime);
 
+
+audioTag.addEventListener("timeupdate", timeupdate);
+audioTag.addEventListener("ended", nextSong);
+// audioTag.addEventListener("progress", timeChecker)
+progressBar.addEventListener("click", setTime);
+sliderVolBtn.addEventListener("mousemove", (e) => {
+    setVolume(e)
+})
+volumeCond.addEventListener("click", (e) => {
+    changeIcon(e)
+})
+
+window.onload = () => {
+    audioTag.volume = 1;
+    sliderVolBtn.value = 100;
+}
 
 
 // functions for uploading data from user machine!
@@ -218,5 +297,3 @@ input.addEventListener("change", function() {
 function genRandomNum(num){
     return Math.floor(Math.random() * (num));
 }
-
-console.log(genRandomNum(3))
