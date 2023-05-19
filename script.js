@@ -137,7 +137,7 @@ function pauseSong(){
     playBtn.innerHTML = `<i class="fa fa-play" aria-hidden="true"></i>`;
     colorchanger.style.animation = `colorchanger 4s linear infinite`
     colorchanger.style.animationPlayState = `paused`;
-
+    rollerCont.classList.remove("roll")
     audioTag.pause()
 }
 
