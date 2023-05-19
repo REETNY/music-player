@@ -128,24 +128,29 @@ function playSong(){
     musicPlayerCont.classList.add("play");
     playBtn.innerHTML = `<i class="fa fa-pause" aria-hidden="true"></i>`;
     colorchanger.style.animation = `colorchanger 4s linear infinite`
-
+    audioTag.addEventListener("timeupdate", timeupdate)
     audioTag.play()
 }
 
 function pauseSong(){
+    addRoller(false)
+    audioTag.removeEventListener("timeupdate", timeupdate)
     musicPlayerCont.classList.remove("play");
     playBtn.innerHTML = `<i class="fa fa-play" aria-hidden="true"></i>`;
     colorchanger.style.animation = `colorchanger 4s linear infinite`
     colorchanger.style.animationPlayState = `paused`;
-    rollerCont.classList.remove("roll")
     audioTag.pause()
 }
 
 function timeupdate(e){
-    rollerCont.classList.add("roll")
     const {currentTime, duration} = e.srcElement;
     const currentPercent = (currentTime / duration)  * 100;
     progress.style.width = `${currentPercent}%`
+    if(rollerCont.classList.contains("roll")){
+        return
+    }else{
+        addRoller(true)
+    }
 }
 
 function setTime(e){
@@ -217,9 +222,17 @@ function changeIcon(e){
 }
 
 function checkPlay(e){
-    rollerCont.classList.remove("roll")
+    addRoller(false)
 }
 
+function addRoller(bool){
+    console.log(bool)
+    if(bool){
+        rollerCont.classList.add("roll")
+    }else{
+        rollerCont.classList.remove("roll")
+    }
+}
 
 //event listeners
 prevBtn.addEventListener("click", prevSong);
