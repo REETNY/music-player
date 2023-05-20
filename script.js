@@ -218,7 +218,7 @@ function changeIcon(e){
     }
 }
 
-function checkPlay(e){
+function checkPlay1(e){
     audioTag.removeEventListener("timeupdate", timeupdate)
     addRoller(false)
 }
@@ -253,7 +253,7 @@ playBtn.addEventListener("click", () => {
 
 audioTag.addEventListener("timeupdate", timeupdate);
 audioTag.addEventListener("ended", nextSong);
-audioTag.addEventListener("waiting", checkPlay);
+audioTag.addEventListener("waiting", checkPlay1);
 audioTag.addEventListener("playing", checkPlay2);
 progressBar.addEventListener("click", setTime);
 sliderVolBtn.addEventListener("change", (e) => {
